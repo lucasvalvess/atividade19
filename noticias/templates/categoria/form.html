@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if categoria %}Editar{% else %}Nova{% endif %} Categoria - Portal Escolar{% endblock %}
+
+{% block content %}
+<h2>{% if categoria %}Editar categoria: {{ categoria.nome }}{% else %}Nova categoria{% endif %}</h2>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Salvar</button>
+</form>
+
+<a href="{% url 'noticias:categorias' %}" class="btn-back">&larr; Voltar para as categorias</a>
+{% endblock %}

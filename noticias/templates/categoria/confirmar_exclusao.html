@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Excluir Categoria - Portal Escolar{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            <div class="card border-danger shadow-sm">
+                
+                <!-- Cabeçalho do Card com destaque visual para exclusão -->
+                <div class="card-header bg-danger text-white py-3">
+                    <h1 class="h4 mb-0 d-flex align-items-center">
+                        <svg xmlns="http://w3.org" width="20" height="20" fill="currentColor" class="bi bi-exclamation-triangle-fill me-2" viewBox="0 0 16 16">
+                            <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                        </svg>
+                        Excluir Categoria
+                    </h1>
+                </div>
+
+                <!-- Corpo do Card -->
+                <div class="card-body p-4">
+                    <p class="fs-5 text-dark mb-3">
+                        Tem certeza de que deseja excluir a categoria 
+                        <strong class="text-danger">"{{ categoria.nome }}"</strong>?
+                    </p>
+                    
+                    <!-- Caixa de aviso estilizada -->
+                    <div class="alert alert-warning d-flex align-items-start mb-4" role="alert">
+                        <svg xmlns="http://w3.org" width="16" height="16" fill="currentColor" class="bi bi-info-circle-fill me-2 mt-1 flex-shrink-0" viewBox="0 0 16 16">
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/>
+                        </svg>
+                        <div>
+                            Atenção: verifique se existem notícias vinculadas a ela antes de prosseguir.
+                        </div>
+                    </div>
+
+                    <!-- Formulário e Botões alinhados lado a lado -->
+                    <form method="post" class="d-flex flex-row-reverse justify-content-start gap-2">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger px-4">
+                            Confirmar exclusão
+                        </button>
+                        <a href="{% url 'noticias:categorias' %}" class="btn btn-light border px-4">
+                            Cancelar
+                        </a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

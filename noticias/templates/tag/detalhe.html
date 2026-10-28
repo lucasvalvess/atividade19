@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Tag: {{ tag.nome }} - Portal Escolar{% endblock %}
+
+{% block content %}
+<h2>Detalhes da tag: {{ tag.nome }}</h2>
+
+<div class="grid-container">
+    <div class="grid-item">
+        <h3>Informações da Tag</h3>
+        <p><strong>Nome:</strong> {{ tag.nome }}</p>
+    </div>
+
+    <div class="grid-item">
+        <h3>Notícias Relacionadas</h3>
+        
+            <ul>
+                {% for noticia in tag.noticia_set.all %}
+                    <li><a href="{% url 'noticias:noticia_detalhe' noticia.id %}">{{ noticia.titulo }}</a></li>
+                {% empty %}
+                    <p>Nenhuma notícia relacionada a esta categoria.</p>
+                {% endfor %}
+            </ul>
+    </div>
+</div>
+
+<div>
+    <a href="{% url 'noticias:tag_update' tag.id %}" class="btn-back btn-edit">Editar tag</a>
+    <a href="{% url 'noticias:tag_delete' tag.id %}" class="btn-back btn-exclude">Deletar tag</a>
+</div>
+
+<a href="{% url 'noticias:tags' %}" class="btn-back">&larr; Voltar para as tags</a>
+{% endblock %}
